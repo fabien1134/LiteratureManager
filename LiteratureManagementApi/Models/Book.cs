@@ -1,0 +1,14 @@
+﻿namespace LiteratureManagementApi.Models
+{
+    public class Book
+    {
+        public required long Id { get; set; }
+        public required string Title { get; set; }
+        public required string ISBN { get; set; }
+        public required string Description { get; set; }
+        public required DateTime PublicationDateUtc { get; set; }
+        public required bool IsAvailable { get; set; }
+
+        public ICollection<BookCategory> BookCategories { get; set; }
+    }
+}
