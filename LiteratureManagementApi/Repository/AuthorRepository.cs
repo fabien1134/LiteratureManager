@@ -23,6 +23,14 @@ namespace LiteratureManagementApi.Repository
 
         public async Task DeleteAuthorAsync(long authorId)
         {
+
+            var bookAuthors= await _context.BookAuthors.Where(ba=>ba.AuthorId==authorId).ToListAsync();
+            if (bookAuthors.Any())
+            {
+                _context.BookAuthors.RemoveRange(bookAuthors);
+                await _context.SaveChangesAsync();
+            }
+
             var author = await _context.Authors.FirstOrDefaultAsync(a => a.Id == authorId);
             if (author != null)
             {
